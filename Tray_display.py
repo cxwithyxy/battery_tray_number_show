@@ -34,6 +34,7 @@ class Tray_display():
 
     def run(self):
         self.get_battery_level()
+        _thread.start_new_thread(self.get_battery_level_thread, ())
         self.icon.run()
     
     def get_battery_level(self):
@@ -48,9 +49,3 @@ class Tray_display():
         while(True):
             self.get_battery_level()
             time.sleep(self.battery_level_capture_rate)
-
-    def run_thread(self):
-        _thread.start_new_thread(self.run, ())
-        _thread.start_new_thread(self.get_battery_level_thread, ())
-
-Tray_display().run()
