@@ -9,13 +9,20 @@ class Tray_display():
     icon = None
     battery_level = 0
     battery_level_capture_rate = 5
+    exit_callback = None
 
     def __init__(self):
         self.icon = pystray.Icon('battery_level_show')
         self.set_menu()
     
+    def set_exit_callback(self, callback_func):
+        self.exit_callback = callback_func
+
     def exit(self):
         print("Exit")
+        self.icon.stop()
+        if(self.exit_callback):
+            self.exit_callback()
 
     def set_menu(self):
         menu_item = pystray.MenuItem("Exit", lambda icon, item: self.exit())
