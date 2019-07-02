@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw, ImageFont
 import pystray
 import _thread
 import time
+import Battery_info
 
 class Tray_display():
     
@@ -26,8 +27,11 @@ class Tray_display():
         self.icon.run()
     
     def get_battery_level(self):
-        self.create_icon_by_text(str(self.battery_level))
-        self.battery_level += 1
+        self.battery_level = Battery_info.get_battery_level()
+        icon_text = str(self.battery_level)
+        if(self.battery_level == 100):
+            icon_text = "F"
+        self.create_icon_by_text(icon_text)
     
     def get_battery_level_thread(self):
         while(True):
