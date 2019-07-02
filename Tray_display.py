@@ -8,6 +8,7 @@ class Tray_display():
     
     icon = None
     battery_level = 0
+    battery_level_capture_rate = 5
 
     def __init__(self):
         self.icon = pystray.Icon('battery_level_show')
@@ -36,7 +37,7 @@ class Tray_display():
     def get_battery_level_thread(self):
         while(True):
             self.get_battery_level()
-            time.sleep(1)
+            time.sleep(self.battery_level_capture_rate)
 
     def run_thread(self):
         _thread.start_new_thread(self.run, ())
