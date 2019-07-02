@@ -12,6 +12,15 @@ class Tray_display():
 
     def __init__(self):
         self.icon = pystray.Icon('battery_level_show')
+        self.set_menu()
+    
+    def exit(self):
+        print("Exit")
+
+    def set_menu(self):
+        menu_item = pystray.MenuItem("Exit", lambda icon, item: self.exit())
+        self.icon.menu = pystray.Menu(menu_item)
+        self.icon.update_menu()
     
     def create_icon_by_text(self, text):
         width = 200
@@ -29,6 +38,7 @@ class Tray_display():
     
     def get_battery_level(self):
         self.battery_level = Battery_info.get_battery_level()
+        self.icon.title = "battery: " + str(self.battery_level) + "%"
         icon_text = str(self.battery_level)
         if(self.battery_level == 100):
             icon_text = "F"
@@ -42,3 +52,5 @@ class Tray_display():
     def run_thread(self):
         _thread.start_new_thread(self.run, ())
         _thread.start_new_thread(self.get_battery_level_thread, ())
+
+Tray_display().run()
