@@ -1,5 +1,3 @@
-# 
-
 # 电池电量在系统托盘显示
 
 battery_tray_number_show 指在解决 windows 系统版的平板电脑查看电量不方便的问题（需要点一下右下角电池图标，这真的是蠢，你看 Android 、IOS、MacOS，哪个是需要点一下看电量的）
