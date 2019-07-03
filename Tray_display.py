@@ -8,7 +8,7 @@ class Tray_display():
     
     icon = None
     battery_level = 0
-    battery_level_capture_rate = 5
+    battery_level_capture_rate = 30
     exit_callback = None
 
     def __init__(self):
