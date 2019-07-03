@@ -12,9 +12,11 @@ def tray_display_multiprocessing():
     tray_display.run()
 
 if __name__ == "__main__":
+    print("===== battery_tray_number_show start =====")
     freeze_support()
     po = Pool(1)
 
     po.apply_async(tray_display_multiprocessing)
 
-    input("battery_tray_number_show start \n")
+    po.close()
+    po.join()
